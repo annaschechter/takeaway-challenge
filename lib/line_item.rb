@@ -8,7 +8,7 @@ class LineItem
 	end
 
 	def line_total
-		@dish.price * @qty
+		@dish.price.to_i * @qty.to_i
 	end
 
 end
