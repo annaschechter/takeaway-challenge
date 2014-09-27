@@ -54,6 +54,7 @@ describe Order do
 
     it "should not allow to complete empty order" do
     	expect(lambda{order.complete_order!}).to raise_error "This order cannot be completed because it is empty!"
-    end		
+    end	
+    	
 	
 end
