@@ -1,4 +1,5 @@
 require_relative 'dish'
+require_relative 'menu'
 
 class Order
 
@@ -8,8 +9,8 @@ class Order
 		@items = {}
 	end
 
-	def add_item(dish, qty)
-		raise "This is not a dish" unless dish.class == Dish
+	def add_item(menu, dish, qty)
+		raise "This item is not on the menu" unless  menu.check_dish(dish)
 		@items[dish] = qty
 	end
 

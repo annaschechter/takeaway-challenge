@@ -11,4 +11,8 @@ class Menu
 		@dishes << dish
 	end
 
+	def check_dish(dish)
+		@dishes.include?(dish)
+	end
+
 end
