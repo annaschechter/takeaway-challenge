@@ -21,8 +21,18 @@ describe Order do
 	    expect{order.add_item(menu, dish, 3)}.to change{order.items.count}.by 1
 	end
 
-	it "should not allow adding items that are on the menu" do
+	it "should allow cancelling items from the items hash" do
+		menu.add_dish(dish)
+		order.add_item(menu, dish, 3)
+	    expect{order.cancel_item(dish)}.to change{order.items.count}.by -1
+	end
+
+	it "should not allow adding items that are not on the menu" do
 		expect(lambda {order.add_item(menu, :massage, 3)}).to raise_error "This item is not on the menu"
+    end
+
+    it "should not allow cancelling items that are not on the order" do
+		expect(lambda {order.cancel_item(:massage)}).to raise_error "This item is not in your order"
     end
 
     it "should add line totals for each item ordered" do
@@ -34,5 +44,16 @@ describe Order do
     	order.add_item(menu, dish, 2)
     	expect(order.grand_total).to eq(8)
     end 
+
+    it "should allow to complete order" do
+    	menu.add_dish(dish)
+    	order.add_item(menu, dish, 2)
+    	order.complete_order!
+    	expect(order).to be_complete
+    end
+
+    it "should not allow to complete empty order" do
+    	expect(lambda{order.complete_order!}).to raise_error "This order cannot be completed because it is empty!"
+    end		
 	
 end
