@@ -35,7 +35,6 @@ class Order
 
 	def complete_order!
 		raise "This order cannot be completed because it is empty!" if @items.empty?
-		Message.new.send_text
 		@complete = true
 	end
 

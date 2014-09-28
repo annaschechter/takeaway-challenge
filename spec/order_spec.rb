@@ -6,6 +6,7 @@ describe Order do
     let(:dish) {Dish.new("Sushi", 4)}
 	let(:menu) {Menu.new}
 	let(:customer) {Customer.new("Name", 07746010777)}
+	let(:message) {double :message, :send_text => true}
 
 
 	it "should initialize with an empty hash of items" do

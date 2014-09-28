@@ -18,10 +18,11 @@ class Takeaway
     	@menu.remove_dish(dish)
     end
 
-    def accept_order(order)
+    def accept_order(order, message)
     	raise "This is not an order" unless order.class == Order
     	raise "This order has not been confirmed" unless order.complete?
     	@orders << order
+    	message.send_text
     end
 
     def deliver_order(order)

@@ -6,6 +6,7 @@ describe Takeaway do
 	let(:dish) {Dish.new("Sushi", 3)}
 	let(:order) {Order.new(customer)}
 	let(:customer) {Customer.new("Anna", 07746010777)}
+	let(:message) {double :message}
     
 
 	it "should initialize with a menu" do
@@ -29,14 +30,16 @@ describe Takeaway do
 		yo_sushi.add_to_menu(dish)
 		customer.select_dish(yo_sushi, dish, 2)
 	    customer.place_order
-		expect{yo_sushi.accept_order(customer.order)}.to change{yo_sushi.orders.count}.by 1
+	    allow(message).to receive(:send_text)
+		expect{yo_sushi.accept_order(customer.order, message)}.to change{yo_sushi.orders.count}.by 1
 	end
 
 	it "should be able to deliver order" do
 		yo_sushi.add_to_menu(dish)
 		customer.select_dish(yo_sushi, dish, 2)
 	    customer.place_order
-	    yo_sushi.accept_order(customer.order)
+	    allow(message).to receive(:send_text)
+	    yo_sushi.accept_order(customer.order, message)
 	    expect{yo_sushi.deliver_order(customer.order)}.to change{yo_sushi.orders.count}.by -1
 	end    
 

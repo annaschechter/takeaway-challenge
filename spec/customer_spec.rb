@@ -3,7 +3,6 @@ require 'customer'
 describe Customer do 
 
  let(:customer) {Customer.new("Anna Jerofejeva", 07746010777)}
- #let(:order) {Order.new}
  let(:takeaway) {Takeaway.new}
  let(:dish) {Dish.new("Burger", 4)}
 
