@@ -11,6 +11,11 @@ class Menu
 		@dishes << dish
 	end
 
+	def remove_dish(dish)
+		raise "This dish is not on the menu" unless check_dish(dish)
+        @dishes.delete(dish)
+    end
+
 	def check_dish(dish)
 		@dishes.include?(dish)
 	end

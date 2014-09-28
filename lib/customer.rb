@@ -2,16 +2,16 @@ require_relative 'order'
 
 class Customer
 
-	attr_reader :name, :phone
+	attr_reader :name, :phone, :order
 
 	def initialize(name, phone)
 		@name = name
 		@phone = phone
+		@order = Order.new(self)
 	end
 
-	def select_dish(menu, dish, qty)
-		@order = Order.new
-		@order.add_item(menu, dish, qty)
+	def select_dish(takeaway, dish, qty)
+		@order.add_item(takeaway.menu, dish, qty)
 	end
 
 	def remove_dish(dish)
@@ -19,8 +19,11 @@ class Customer
 	end
 
 	def place_order
-		raise "There are no orders to place" if @order == nil
+		raise "There are no orders to place" if @order.items.empty?
 	    @order.complete_order!
-	end 
-
+	end
+    
+    def can_start_again
+    	@order = Order.new(self)
+    end
 end

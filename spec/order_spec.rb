@@ -2,10 +2,10 @@ require 'order'
 
 describe Order do 
 
-	let(:order) {Order.new}
+	let(:order) {Order.new(customer)}
     let(:dish) {Dish.new("Sushi", 4)}
 	let(:menu) {Menu.new}
-	
+	let(:customer) {Customer.new("Name", 07746010777)}
 
 
 	it "should initialize with an empty hash of items" do
@@ -14,6 +14,10 @@ describe Order do
 
 	it "should initialize with an empty array of line totals" do
 		expect(order.line_totals.count).to eq(0)
+	end
+
+	it "should initialize with a customer" do
+		expect(order.customer.class).to eq(Customer)
 	end
 
 	it "should allow adding items to the items hash" do

@@ -1,12 +1,13 @@
-require_relative 'dish'
-require_relative 'menu'
 require_relative 'line_item'
+require_relative 'message'
+require_relative 'customer'
 
 class Order
 
-    attr_reader :items, :line_totals
+    attr_reader :items, :line_totals, :customer
 
-	def initialize
+	def initialize(customer)
+		@customer = customer
 		@items = {}
 		@line_totals = []
 		@complete = false
@@ -34,11 +35,16 @@ class Order
 
 	def complete_order!
 		raise "This order cannot be completed because it is empty!" if @items.empty?
+		Message.new.send_text
 		@complete = true
 	end
 
 	def complete?
 		@complete
+	end
+
+	def deliver!
+		@customer.can_start_again
 	end
 
 end
