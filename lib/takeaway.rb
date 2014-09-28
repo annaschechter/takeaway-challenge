@@ -1,5 +1,7 @@
 require_relative 'customer'
 require_relative 'order'
+require_relative 'menu'
+
 
 class Takeaway
     
@@ -18,17 +20,18 @@ class Takeaway
     	@menu.remove_dish(dish)
     end
 
-    def accept_order(order, message)
-    	raise "This is not an order" unless order.class == Order
-    	raise "This order has not been confirmed" unless order.complete?
-    	@orders << order
+    def accept_order(customer, message)
+    	raise "This is not an order" unless customer.order.class == Order
+    	raise "This order has not been confirmed" unless customer.order.complete?
+    	@orders << customer.order
     	message.send_text
     end
 
-    def deliver_order(order)
-    	raise "This order has not been accepted" unless @orders.include?(order)
-    	order.deliver!
-    	@orders.delete(order)
+    def deliver_order(customer)
+    	@order = customer.order
+    	raise "This order has not been accepted" unless @orders.include?(customer.order)
+    	customer.order.deliver!
+    	@orders.delete(@order)
     end
 
 end

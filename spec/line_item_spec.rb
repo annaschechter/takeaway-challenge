@@ -13,7 +13,7 @@ describe LineItem do
 	end
 
 	it "should calculate item total" do
-		expect(line_item.line_total).to eq(4 * 5.00)
+		expect(line_item.line_total).to eq(20)
 	end
 
 end

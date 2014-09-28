@@ -1,6 +1,8 @@
 require_relative 'line_item'
 require_relative 'message'
 require_relative 'customer'
+require_relative 'dish'
+
 
 class Order
 
