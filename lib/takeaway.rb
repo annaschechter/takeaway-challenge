@@ -29,7 +29,7 @@ class Takeaway
 
     def deliver_order(customer)
     	@order = customer.order
-    	raise "This order has not been accepted" unless @orders.include?(customer.order)
+    	raise "This order has not been accepted" unless @orders.include?(@order)
     	customer.order.deliver!
     	@orders.delete(@order)
     end

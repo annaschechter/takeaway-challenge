@@ -15,7 +15,7 @@ class Message
 		@text = "Thank you! Your order was placed and will be delivered before #{@delivery_time.strftime('%H:%M')}."
     end
 
-	def send_text
+	def send_text!
 		create_text
 		account_sid = "AC91a6dee08bbe2d14e7a6b175e6dfb6a8"
         auth_token = "0c10b5dfbc3fc1f98125a847db54d0d3"

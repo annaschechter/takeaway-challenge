@@ -1,0 +1,7 @@
+require_relative 'dish.rb'
+require_relative 'customer.rb'
+require_relative 'line_item.rb'
+require_relative 'menu.rb'
+require_relative 'message.rb'
+require_relative 'order.rb'
+require_relative 'takeaway.rb'
